@@ -17,14 +17,15 @@ class TaskListView @JvmOverloads constructor(
 
     lateinit var task: Task
 
-    fun init(task: Task) {
+    fun init(task: Task, todoCallback: ((todoIndex: Int, isComplete: Boolean) -> Unit)? = null) {
         this.task = task;
         titleView.text = task.title
-        task.todos.forEach { todo ->
+        task.todos.forEachIndexed { index, todo ->
             val todoView = (LayoutInflater.from(context)
                 .inflate(R.layout.view_todo, todoContainer, false) as TodoView).apply {
-                initView(todo) {
-                    if (isTaskComplete()) {
+                initView(todo) { isComplete ->
+                    todoCallback?.invoke(index, isComplete)
+                    if (todo.isComplete) {
                         createStrikeThrough()
                     } else {
                         removeStrikerThrough()
@@ -34,11 +35,6 @@ class TaskListView @JvmOverloads constructor(
             todoContainer.addView(todoView)
         }
     }
-
-    private fun isTaskComplete(): Boolean =
-        task.todos.filter {
-            it.isComplete
-        }.size == task.todos.size
 
 
     private fun createStrikeThrough() {

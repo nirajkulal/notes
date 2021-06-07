@@ -29,13 +29,13 @@ class NotesAdapter(
 
 
     class ViewHolder(itemView: View) : BaseViewHolder<Note>(itemView) {
-        override fun onBind(data: Note) {
+        override fun onBind(data: Note, listIndex: Int) {
             (itemView as NoteView).initView(data)
         }
     }
 
     inner class ButtonViewHolder(itemView: View) : BaseButtonViewHolder(itemView) {
-        override fun onBind(data: Unit) {
+        override fun onBind(data: Unit, listIndex: Int) {
             itemView.button.text = itemView.context.getString(R.string.add_button_text)
             itemView.setOnClickListener {
                 buttonTouch.addButtonClick(FRAGMENT_VALUE_NOTE)

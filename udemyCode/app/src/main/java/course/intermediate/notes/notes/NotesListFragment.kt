@@ -8,15 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import course.intermediate.notes.R
-import kotlinx.android.synthetic.main.fragment_notes_list.*
 
 class NotesListFragment : Fragment() {
 
     lateinit var buttonTouch: TouchAction;
     lateinit var noteViewModel: NoteViewModel
-    lateinit var adapter: NotesAdapter
+    lateinit var customView: NoteListView;
 
 
     override fun onAttach(context: Context) {
@@ -34,27 +32,27 @@ class NotesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes_list, container, false)
+        return inflater.inflate(R.layout.fragment_notes_list, container, false).apply {
+            customView = this as NoteListView
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = NotesAdapter(
-            buttonTouch = buttonTouch
-        )
-        recyclerView.adapter = adapter
+        customViewUpdate();
         bindViewModel();
+    }
+
+    private fun customViewUpdate() {
+        customView.initView(buttonTouch)
     }
 
     private fun bindViewModel() {
         val viewModel: NoteViewModel by viewModels()
         this.noteViewModel = viewModel
-
         noteViewModel.noteListLiveData.observe(this, Observer {
-            adapter.updateData(it)
+            customView.updateData(it)
         })
-
     }
 
     companion object {

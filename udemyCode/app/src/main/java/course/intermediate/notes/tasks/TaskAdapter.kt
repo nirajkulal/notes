@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.view_add_button.view.*
 
 class TaskAdapter(
     val taskList: MutableList<Task> = mutableListOf(),
-    val onButtonTouchDelegate: TasksListFragment.TouchAction
+    val onButtonTouchDelegate: TasksListFragment.TouchAction,
+    val taskListViewViewContract: TaskListViewViewContract
 ) : BaseRecyclerAdapter<Task>(taskList) {
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): RecyclerView.ViewHolder =
         if (type == TYPE_INFO)
@@ -26,14 +27,16 @@ class TaskAdapter(
             )
         }
 
-    class TaskViewHolder(itemView: View) : BaseViewHolder<Task>(itemView) {
-        override fun onBind(data: Task) {
-            (itemView as TaskListView).init(data)
+   inner class TaskViewHolder(itemView: View) : BaseViewHolder<Task>(itemView) {
+        override fun onBind(data: Task, listIndex: Int) {
+            (itemView as TaskListView).init(data){todoIndex, isComplete ->
+                taskListViewViewContract.onTodoUpdated(listIndex,todoIndex,isComplete)
+            }
         }
     }
 
     inner class ButtonViewHolder(itemView: View) : BaseButtonViewHolder(itemView) {
-        override fun onBind(data: Unit) {
+        override fun onBind(data: Unit, listIndex: Int) {
             itemView.button.text = itemView.context.getString(R.string.add_button_text)
             itemView.setOnClickListener {
                 onButtonTouchDelegate.addButtonClick(FRAGMENT_VALUE_TASK)

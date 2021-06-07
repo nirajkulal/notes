@@ -4,7 +4,8 @@ package course.intermediate.notes.models
 data class Task @JvmOverloads constructor(
     var title: String,
     val todos: MutableList<Todo> = mutableListOf(),
-    var tag: Tag? = null
+    var tag: Tag? = null,
+    var isComplete: Boolean = false
 
 )
 

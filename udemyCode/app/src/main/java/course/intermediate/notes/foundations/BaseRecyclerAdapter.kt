@@ -2,7 +2,6 @@ package course.intermediate.notes.foundations
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import course.intermediate.notes.models.Note
 
 abstract class BaseRecyclerAdapter<T>(
     protected val masterList: MutableList<T> = mutableListOf()
@@ -10,9 +9,9 @@ abstract class BaseRecyclerAdapter<T>(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, pos: Int) {
         if (holder is BaseButtonViewHolder)
-            holder.onBind(Unit)
+            holder.onBind(Unit, 0)
         else
-            (holder as BaseViewHolder<T>).onBind(masterList[pos - 1])
+            (holder as BaseViewHolder<T>).onBind(masterList[pos - 1],(pos-1))
     }
 
     fun updateData(data: MutableList<T>) {
@@ -24,7 +23,7 @@ abstract class BaseRecyclerAdapter<T>(
     override fun getItemCount(): Int = masterList.size + 1
 
     abstract class BaseViewHolder<K>(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        abstract fun onBind(data: K);
+        abstract fun onBind(data: K,listIndex: Int);
     }
 
     abstract class BaseButtonViewHolder(itemView: View) : BaseViewHolder<Unit>(itemView)

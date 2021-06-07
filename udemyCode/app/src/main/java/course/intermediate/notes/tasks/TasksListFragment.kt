@@ -40,12 +40,12 @@ class TasksListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        customView()
         bindViewModel();
+        customView()
     }
 
     private fun customView() {
-        taskListView.initView(onButtonTouch)
+        taskListView.initView(onButtonTouch,taskViewModel)
     }
 
     fun bindViewModel() {
