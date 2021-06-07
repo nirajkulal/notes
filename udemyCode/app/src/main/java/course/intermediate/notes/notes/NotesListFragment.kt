@@ -39,12 +39,12 @@ class NotesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        customViewUpdate();
         bindViewModel();
+        customViewUpdate();
     }
 
     private fun customViewUpdate() {
-        customView.initView(buttonTouch)
+        customView.initView(buttonTouch,noteViewModel)
     }
 
     private fun bindViewModel() {
