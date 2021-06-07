@@ -17,7 +17,6 @@ class NoteListView @kotlin.jvm.JvmOverloads constructor(
     lateinit var buttonTouch: NotesListFragment.TouchAction
     lateinit var notesDataDelegate: NotesListviewContract
 
-
     fun initView(
         buttonTouch: NotesListFragment.TouchAction,
         notesDataDelegate: NotesListviewContract

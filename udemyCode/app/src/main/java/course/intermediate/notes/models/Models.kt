@@ -6,7 +6,6 @@ data class Task @JvmOverloads constructor(
     val todos: MutableList<Todo> = mutableListOf(),
     var tag: Tag? = null,
     var isComplete: Boolean = false
-
 )
 
 data class Todo(

@@ -8,14 +8,12 @@ import course.intermediate.notes.models.Task
 class TaskViewModel : ViewModel(), TaskListViewViewContract {
 
     private var model: TaskModel = TaskModel()
-
     private val _taskLiveData: MutableLiveData<MutableList<Task>> = MutableLiveData()
     val taskListLiveData: LiveData<MutableList<Task>> = _taskLiveData
 
     init {
         _taskLiveData.postValue(model.getTaskData())
     }
-
 
     override fun onTodoUpdated(taskIndex: Int, todoIndex: Int, isComplete: Boolean) {
         _taskLiveData.value?.get(taskIndex)?.todos?.get(todoIndex)?.isComplete = isComplete

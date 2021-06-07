@@ -36,7 +36,6 @@ class TaskListView @JvmOverloads constructor(
         }
     }
 
-
     private fun createStrikeThrough() {
         titleView.apply {
             paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG

@@ -4,8 +4,6 @@ import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.Todo
 
 class TaskModel {
-
-
     fun getTaskData(): MutableList<Task> {
         return mutableListOf(
             Task(
@@ -22,5 +20,4 @@ class TaskModel {
             )
         )
     }
-
 }

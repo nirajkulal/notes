@@ -41,7 +41,6 @@ class TaskAdapter(
             itemView.setOnClickListener {
                 onButtonTouchDelegate.addButtonClick(FRAGMENT_VALUE_TASK)
             }
-
         }
     }
 }

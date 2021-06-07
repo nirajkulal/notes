@@ -9,5 +9,4 @@ class NoteModel {
             Note("a2")
         )
     }
-
 }

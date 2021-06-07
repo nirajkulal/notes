@@ -27,7 +27,6 @@ class NotesAdapter(
             )
         }
 
-
     class ViewHolder(itemView: View) : BaseViewHolder<Note>(itemView) {
         override fun onBind(data: Note, listIndex: Int) {
             (itemView as NoteView).initView(data)

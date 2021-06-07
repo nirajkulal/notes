@@ -16,7 +16,6 @@ class NotesListFragment : Fragment() {
     lateinit var noteViewModel: NoteViewModel
     lateinit var customView: NoteListView
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
