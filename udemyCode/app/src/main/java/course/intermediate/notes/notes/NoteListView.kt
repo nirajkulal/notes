@@ -7,16 +7,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import course.intermediate.notes.models.Note
 import kotlinx.android.synthetic.main.fragment_notes_list.view.*
 
-class NoteListView  @kotlin.jvm.JvmOverloads constructor(
+class NoteListView @kotlin.jvm.JvmOverloads constructor(
     context: Context? = null,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 1
-) : ConstraintLayout(context, attrs, defStyleAttr)  {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     lateinit var adapter: NotesAdapter
+    lateinit var buttonTouch: NotesListFragment.TouchAction
 
 
     fun initView(buttonTouch: NotesListFragment.TouchAction) {
+        setUpDelegate(buttonTouch)
+        setUpView()
+    }
+
+    private fun setUpDelegate(buttonTouch: NotesListFragment.TouchAction) {
+        this.buttonTouch = buttonTouch
+    }
+
+    private fun setUpView() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = NotesAdapter(
             buttonTouch = buttonTouch
