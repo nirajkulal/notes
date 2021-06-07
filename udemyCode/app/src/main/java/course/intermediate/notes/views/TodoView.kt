@@ -20,7 +20,7 @@ class TodoView @JvmOverloads constructor(
         if (todo.isComplete) {
             createStrikeThrough()
         }
-        setUpCheckStateListener(todo, callback )
+        setUpCheckStateListener(todo, callback)
     }
 
     fun setUpCheckStateListener(todo: Todo, callBack: ((isComplete: Boolean) -> Unit)? = null) {

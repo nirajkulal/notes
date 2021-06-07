@@ -13,7 +13,7 @@ class TasView @kotlin.jvm.JvmOverloads constructor(
     defStyleAttr: Int = 1
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    lateinit var onButtonTouch: TasksListFragment.TouchAction;
+    lateinit var onButtonTouch: TasksListFragment.TouchAction
     lateinit var taskListViewViewContract: TaskListViewViewContract
     lateinit var adapter: TaskAdapter
 
@@ -21,7 +21,7 @@ class TasView @kotlin.jvm.JvmOverloads constructor(
         onButtonTouch: TasksListFragment.TouchAction,
         taskListViewViewContract: TaskListViewViewContract
     ) {
-        setUpDelegate(onButtonTouch, taskListViewViewContract);
+        setUpDelegate(onButtonTouch, taskListViewViewContract)
         setUpView()
     }
 
@@ -31,7 +31,7 @@ class TasView @kotlin.jvm.JvmOverloads constructor(
             onButtonTouchDelegate = onButtonTouch,
             taskListViewViewContract = taskListViewViewContract
         )
-        recyclerView.adapter = adapter;
+        recyclerView.adapter = adapter
     }
 
     private fun setUpDelegate(

@@ -12,9 +12,9 @@ import course.intermediate.notes.R
 
 class NotesListFragment : Fragment() {
 
-    lateinit var buttonTouch: TouchAction;
+    lateinit var buttonTouch: TouchAction
     lateinit var noteViewModel: NoteViewModel
-    lateinit var customView: NoteListView;
+    lateinit var customView: NoteListView
 
 
     override fun onAttach(context: Context) {
@@ -39,12 +39,12 @@ class NotesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindViewModel();
-        customViewUpdate();
+        bindViewModel()
+        customViewUpdate()
     }
 
     private fun customViewUpdate() {
-        customView.initView(buttonTouch,noteViewModel)
+        customView.initView(buttonTouch, noteViewModel)
     }
 
     private fun bindViewModel() {

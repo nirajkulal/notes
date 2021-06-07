@@ -45,7 +45,7 @@ class NavigationActivity : AppCompatActivity(),
     }
 
     override fun addButtonClick(value: String) {
-        goToCreate(value);
+        goToCreate(value)
     }
 
     private fun goToCreate(from: String) {

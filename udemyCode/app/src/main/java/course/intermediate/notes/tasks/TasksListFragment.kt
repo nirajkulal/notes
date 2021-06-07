@@ -12,9 +12,9 @@ import course.intermediate.notes.R
 
 class TasksListFragment : Fragment() {
 
-    lateinit var onButtonTouch: TouchAction;
+    lateinit var onButtonTouch: TouchAction
     lateinit var taskViewModel: TaskViewModel
-    lateinit var taskListView: TasView;
+    lateinit var taskListView: TasView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,12 +40,12 @@ class TasksListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindViewModel();
+        bindViewModel()
         customView()
     }
 
     private fun customView() {
-        taskListView.initView(onButtonTouch,taskViewModel)
+        taskListView.initView(onButtonTouch, taskViewModel)
     }
 
     fun bindViewModel() {

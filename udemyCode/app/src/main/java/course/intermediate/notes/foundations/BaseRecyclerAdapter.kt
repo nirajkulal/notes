@@ -11,7 +11,7 @@ abstract class BaseRecyclerAdapter<T>(
         if (holder is BaseButtonViewHolder)
             holder.onBind(Unit, 0)
         else
-            (holder as BaseViewHolder<T>).onBind(masterList[pos - 1],(pos-1))
+            (holder as BaseViewHolder<T>).onBind(masterList[pos - 1], (pos - 1))
     }
 
     fun updateData(data: MutableList<T>) {
@@ -23,14 +23,14 @@ abstract class BaseRecyclerAdapter<T>(
     override fun getItemCount(): Int = masterList.size + 1
 
     abstract class BaseViewHolder<K>(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        abstract fun onBind(data: K,listIndex: Int);
+        abstract fun onBind(data: K, listIndex: Int)
     }
 
     abstract class BaseButtonViewHolder(itemView: View) : BaseViewHolder<Unit>(itemView)
 
     companion object {
-        val TYPE_ADD_BUTTON = 0;
-        val TYPE_INFO = 1;
+        val TYPE_ADD_BUTTON = 0
+        val TYPE_INFO = 1
     }
 
     override fun getItemViewType(position: Int): Int =

@@ -19,6 +19,5 @@ class CreateActivity : AppCompatActivity() {
                 "From Task"
             }
         }
-
     }
 }

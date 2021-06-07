@@ -18,7 +18,7 @@ class TaskListView @JvmOverloads constructor(
     lateinit var task: Task
 
     fun init(task: Task, todoCallback: ((todoIndex: Int, isComplete: Boolean) -> Unit)? = null) {
-        this.task = task;
+        this.task = task
         titleView.text = task.title
         task.todos.forEachIndexed { index, todo ->
             val todoView = (LayoutInflater.from(context)

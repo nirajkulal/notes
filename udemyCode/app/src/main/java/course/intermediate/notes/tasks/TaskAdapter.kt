@@ -20,17 +20,17 @@ class TaskAdapter(
         if (type == TYPE_INFO)
             TaskViewHolder(
                 LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
-            );
+            )
         else {
             ButtonViewHolder(
                 LayoutInflater.from(parent.context).inflate(R.layout.view_add_button, parent, false)
             )
         }
 
-   inner class TaskViewHolder(itemView: View) : BaseViewHolder<Task>(itemView) {
+    inner class TaskViewHolder(itemView: View) : BaseViewHolder<Task>(itemView) {
         override fun onBind(data: Task, listIndex: Int) {
-            (itemView as TaskListView).init(data){todoIndex, isComplete ->
-                taskListViewViewContract.onTodoUpdated(listIndex,todoIndex,isComplete)
+            (itemView as TaskListView).init(data) { todoIndex, isComplete ->
+                taskListViewViewContract.onTodoUpdated(listIndex, todoIndex, isComplete)
             }
         }
     }
