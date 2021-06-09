@@ -1,11 +1,12 @@
 package course.intermediate.notes.views
 
 import android.content.Context
-import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import course.intermediate.notes.R
+import course.intermediate.notes.foundations.removeStrikeThrough
+import course.intermediate.notes.foundations.setStrikeThrough
 import course.intermediate.notes.models.Task
 import kotlinx.android.synthetic.main.item_task.view.*
 
@@ -16,7 +17,6 @@ class TaskListView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     lateinit var task: Task
-
     fun init(task: Task, todoCallback: ((todoIndex: Int, isComplete: Boolean) -> Unit)? = null) {
         this.task = task
         titleView.text = task.title
@@ -26,9 +26,9 @@ class TaskListView @JvmOverloads constructor(
                 initView(todo) { isComplete ->
                     todoCallback?.invoke(index, isComplete)
                     if (todo.isComplete) {
-                        createStrikeThrough()
+                        this@TaskListView.titleView.setStrikeThrough()
                     } else {
-                        removeStrikerThrough()
+                        this@TaskListView.titleView.removeStrikeThrough()
                     }
                 }
             }
@@ -36,17 +36,5 @@ class TaskListView @JvmOverloads constructor(
         }
     }
 
-    private fun createStrikeThrough() {
-        titleView.apply {
-            paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        }
-    }
-
-    private fun removeStrikerThrough() {
-        titleView.apply {
-            paintFlags =
-                paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-        }
-    }
 
 }

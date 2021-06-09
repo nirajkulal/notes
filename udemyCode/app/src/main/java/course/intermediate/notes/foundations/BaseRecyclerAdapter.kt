@@ -1,6 +1,7 @@
 package course.intermediate.notes.foundations
 
 import android.view.View
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseRecyclerAdapter<T>(
@@ -15,9 +16,10 @@ abstract class BaseRecyclerAdapter<T>(
     }
 
     fun updateData(data: MutableList<T>) {
+        var result = DiffUtil.calculateDiff(DiffUtilCallback(masterList,data))
         masterList.clear()
         masterList.addAll(data)
-        notifyDataSetChanged()
+        result.dispatchUpdatesTo(this)
     }
 
     override fun getItemCount(): Int = masterList.size + 1
@@ -39,4 +41,26 @@ abstract class BaseRecyclerAdapter<T>(
         } else {
             TYPE_INFO
         }
+
+    class DiffUtilCallback<T>(
+        val oldList: List<T>,
+        val newList: List<T>
+    ) : DiffUtil.Callback(){
+        override fun getOldListSize(): Int {
+            return oldList.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newList.size
+        }
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return  (oldList[oldItemPosition] == newList[newItemPosition])
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return  (oldList[oldItemPosition] == newList[newItemPosition])
+        }
+
+    }
 }

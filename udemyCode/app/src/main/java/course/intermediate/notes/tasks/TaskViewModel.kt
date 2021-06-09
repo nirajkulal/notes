@@ -3,15 +3,28 @@ package course.intermediate.notes.tasks
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import course.intermediate.notes.foundations.ApplicationsScope
 import course.intermediate.notes.models.Task
+import course.intermediate.notes.models.Todo
+import toothpick.Toothpick
+import toothpick.config.Module
+import javax.inject.Inject
 
 class TaskViewModel : ViewModel(), TaskListViewViewContract {
 
-    private var model: TaskModel = TaskModel()
+    @Inject
+    lateinit var model: ITaskModel
     private val _taskLiveData: MutableLiveData<MutableList<Task>> = MutableLiveData()
     val taskListLiveData: LiveData<MutableList<Task>> = _taskLiveData
 
     init {
+       /* var scope = Toothpick.openScopes(this,ApplicationsScope.scope)
+        scope.installModules(Module().apply {
+            bind(ITaskModel::class.java).toInstance(TestModel())
+        })*/
+        Toothpick.inject(this, ApplicationsScope.scope)
+
+        //Toothpick.inject(this, scope)
         _taskLiveData.postValue(model.getTaskData())
     }
 
@@ -27,3 +40,4 @@ class TaskViewModel : ViewModel(), TaskListViewViewContract {
             it.isComplete
         }.size == task.todos.size
 }
+
